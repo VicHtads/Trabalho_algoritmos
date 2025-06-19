@@ -1,4 +1,4 @@
-import main as m
+from dados import lista_participantes
 
 def cadastro_participante():
     '''
@@ -33,7 +33,7 @@ def cadastro_participante():
         "preferencias_tematicas": []
     }
 
-    m.lista_participantes.append(novo_participante)
+    lista_participantes.append(novo_participante)
 
     print(f"\n[SUCESSO] Participante '{nome}' adicionado com o ID {novo_id}!")
 
@@ -44,7 +44,7 @@ def gerar_novo_id_participante():
     Gera um ID único para um participante.
     A lógica é encontrar o maior ID existente e incrementar + 1
     '''
-    if not m.lista_participantes:
+    if not lista_participantes:
         # Se a lista está vazia, o primeiro ID será 1.
         return 1
     else:
@@ -52,7 +52,7 @@ def gerar_novo_id_participante():
         ids_existentes = []
 
         # 2. Usa um for loop para percorrer cada dicionário de participante
-        for participantes in m.lista_participantes:
+        for participantes in lista_participantes:
 
             # 3. De cada participante, pega o valor da chave 'id' e adiciona à lista
             ids_existentes.append(participantes["id"])
@@ -63,21 +63,24 @@ def gerar_novo_id_participante():
         # 5. O novo ID será o maior ID + 1
         novo_id = maior_id + 1
         return novo_id
-    
+
+
 def listar_todos_participantes():
     """
     Exibe no terminal a lista de todos os participantes cadastrados.
     """
+    # --- DEBUG CHECKPOINT 3 ---
+    print(f"--- DEBUG: No início de listar_participantes, a lista tem {len(lista_participantes)} itens.")
     print("\n--- Lista de Participantes Cadastrados ---")
 
-    if not m.lista_participantes:
+    if not lista_participantes:
         print("Nenhum participante Cadastrado no sistema.")
         return
     
     print(f"{'ID':<5} | {'Nome':<25} | {'E-mail'}")
     print("-" * 50)
 
-    for p in m.lista_participantes:
+    for p in lista_participantes:
         # Acesso dos valores do dicionário 'p' por suas chaves
         uid = p['id']
         nome = p['nome']
