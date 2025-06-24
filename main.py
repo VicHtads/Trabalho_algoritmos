@@ -1,19 +1,30 @@
-from dados import carrgar_dados, lista_eventos, lista_participantes
+# Arquivo: main.py
+# Este arquivo será o motor do sistem. Onde todo o sistema será executado
+
+from dados import PARTICIPANTES_DADOS, EVENTOS_DADOS
 import participante
 import menu
 import eventos
 
+lista_participantes = []
+lista_eventos = []
+
+def carrgar_dados():
+    global lista_participantes, lista_eventos
+    # copy() está sendo usado para evitar mudanças inesperadas na lista original.
+    lista_participantes.extend(PARTICIPANTES_DADOS)
+    lista_eventos.extend(EVENTOS_DADOS)
+    print(">>> Dados carregados com sucesso!")
+
 # --- Ponto de Entrada do Sistema ---
 if __name__ == "__main__":
     carrgar_dados()
-    # --- DEBUG CHECKPOINT 2 ---
-    print(f"--- DEBUG: Após a chamada de carregar_dados, a lista global de participantes tem {len(lista_participantes)} itens.")
 
     opcoes_menu = {
-        "1": eventos.listar_todos_eventos,
-        "0": menu.sair_do_sistema,
-        "2": participante.cadastro_participante,
-        "3": participante.listar_todos_participantes,
+        "1": lambda: eventos.listar_todos_eventos(lista_eventos),
+        "2": lambda: participante.cadastro_participante(lista_participantes),
+        "3": lambda: participante.listar_todos_participantes(lista_participantes),
+        "0": lambda: menu.sair_do_sistema(),
     }
 
     # Loop principal do programa

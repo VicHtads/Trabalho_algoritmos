@@ -1,20 +1,6 @@
 # Arquivo: dados.py
 # Este arquivo simula os dados prontos que o sistema deve importar.
 
-# Listas globais
-lista_participantes = []
-lista_eventos = []
-
-# Função para carregar e ler os dados importados de forma reutilizavel
-def carrgar_dados():
-    global lista_participantes, lista_eventos
-    # copy() está sendo usado para evitar mudanças inesperadas na lista original.
-    lista_participantes = PARTICIPANTES_DADOS.copy()
-    lista_eventos = EVENTOS_DADOS.copy()
-    print(f"--- DEBUG: Dentro de carregar_dados, {len(lista_participantes)} participantes e {len(lista_eventos)} eventos foram carregados.")
-    print(">>> Dados carregados com sucesso!")
-
-
 PARTICIPANTES_DADOS = [
     {"id": 1, "nome": "Carlos Silva", "email": "carlos.silva@email.com", "preferencias_tematicas": ["Inteligência Artificial", "Segurança"]},
     {"id": 2, "nome": "Beatriz Santos", "email": "beatriz.santos@email.com", "preferencias_tematicas": ["Web", "Inteligência Artificial"]},

@@ -1,3 +1,5 @@
+# Arquivo: menu.py
+# Este arquivo terá toda a 'interface' do sistema, com suas respectivas opções de mostragem.
 
 def exibir_menu():
     print("\n--- Sistema de Gerenciamento de Eventos Tech ---")
