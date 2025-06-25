@@ -24,6 +24,7 @@ if __name__ == "__main__":
         "1": lambda: eventos.listar_todos_eventos(lista_eventos),
         "2": lambda: participante.cadastro_participante(lista_participantes),
         "3": lambda: participante.listar_todos_participantes(lista_participantes),
+        "4": lambda: eventos.listar_participante_evento_especifico(lista_eventos, lista_participantes),
         "0": lambda: menu.sair_do_sistema(),
     }
 

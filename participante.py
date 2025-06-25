@@ -1,14 +1,15 @@
 # Arquivo: participante.py 
 # Este arquivo receberá todas e quaisquer funcionalidades com relação ao indivíduo 'participante'.
+from utils import exibir_cabecalho
 
 def cadastro_participante(lista_p):
     '''
     Solicita os dados de um novo participante, com validação interativa, e o adiciona à lista.
     '''
-    print("\n--- Cadastrar Novo Participante ---")
+    exibir_cabecalho("Cadastrar Novo Participante")
 
     while True:
-    # 1. Solicita dados ao usuário
+    #  Solicita dados ao usuário
     # Uso do .strip() para remover espaços extras que o usuário possa digitar
         nome = input("Digite o nome completo do participante: ").strip()
         if len(nome) > 2: # Uma validação simples: o nome deve conter maus de 2 caracteres.
@@ -48,15 +49,15 @@ def gerar_novo_id_participante(lista_p):
         # Se a lista está vazia, o primeiro ID será 1.
         return 1
     else:
-        ids_existentes = [p['id'] for p in lista_p]
-        return max(ids_existentes) + 1
+        return max(p['id'] for p in lista_p) + 1
 
 
 def listar_todos_participantes(lista_p):
     """
     Exibe no terminal a lista de todos os participantes cadastrados.
     """
-    print("\n--- Lista de Participantes Cadastrados ---")
+    exibir_cabecalho("Lista de Participantes Cadastrados")
+
     if not lista_p:
         print("Nenhum participante Cadastrado no sistema.")
         return
