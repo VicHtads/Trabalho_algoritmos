@@ -1,13 +1,15 @@
 # Arquivo: participante.py 
 # Este arquivo receberá todas e quaisquer funcionalidades com relação ao indivíduo 'participante'.
 from utils import exibir_cabecalho
+import eventos as evt
 
-def cadastro_participante(lista_p):
+def cadastro_participante(lista_p, lista_e):
     '''
-    Solicita os dados de um novo participante, com validação interativa, e o adiciona à lista.
+    Solicita os dados de um novo participante, com suas preferências temáticas, sugere eventos e libera uma inscrição imediata caso o participante queira.
     '''
     exibir_cabecalho("Cadastrar Novo Participante")
 
+# --- Bloco: Coleta de Dados Básicos ---
     while True:
     #  Solicita dados ao usuário
     # Uso do .strip() para remover espaços extras que o usuário possa digitar
@@ -25,18 +27,63 @@ def cadastro_participante(lista_p):
         else:
             print("[ERRO] Formato de e-mail inválido. O e-mail deve conter '@' e um '.' após.")
 
-# --- Geração do ID e Criação do Dicionário ---
+# --- Bloco: Coletar Preferências Temáticas ---
+    print("\nSelecione seus temas de interesse:")
+    temas_disponiveis = evt.obter_temas_unicos(lista_e)
+    for i, tema in enumerate(temas_disponiveis):
+        print(f"{i + 1}. {tema}")
+
+    preferencias_escolhidas = []
+    try:
+        escolhas = input("Digite os números dos temas (separados por vírgulas, ex: 1,3): ").split(',')
+        for escolha in escolhas:
+            indice = int(escolha.strip()) - 1
+            if 0 <= indice < len(temas_disponiveis):
+                preferencias_escolhidas.append(temas_disponiveis[indice])
+    except (ValueError, IndexError):
+        print("[AVISO] Seleção de temas inválidas. O participante será cadastrado sem preferências.")
+
+# --- Bloco: Criar e Salvar Participante ---
     novo_id = gerar_novo_id_participante(lista_p)
-
     novo_participante = {
-        "id": novo_id,
-        "nome": nome,
-        "email": email,
-        "preferencias_tematicas": []
+        'id': novo_id,
+        'nome': nome,
+        'email': email,
+        'preferencias_tematicas': preferencias_escolhidas
     }
-
     lista_p.append(novo_participante)
-    print(f"\n[SUCESSO] Participante '{nome}' adicionado com o ID {novo_id}!")
+    print(f"\n[SUCESSO] Participante '{nome}' (ID: {novo_id}) cadastrado!")
+
+# --- Bloco: Sugerir e Inscrever em Evento ---
+    if not preferencias_escolhidas:
+        return # Se não foram especificadas preferências temáticas, encerra a função aqui.
+    
+    eventos_sugeridos = [e for e in lista_e if e['tema'] in preferencias_escolhidas]
+
+    if not eventos_sugeridos:
+        print("Nenhum evento encontrado com base em suas preferências")
+        return
+    
+    exibir_cabecalho("Eventos Sugeridos para Você")
+    for i, evento in enumerate(eventos_sugeridos):
+        print(f"{i + 1}. {evento['nome']} ({evento['tema']}) - Data {evento['data']}")
+    
+    try:
+        inscricao = input("\nDeseja se increver em um dos eventos sugeridos? Digite o número do evento ou 'N' para não: "). strip()
+        if inscricao.upper() == 'N':
+            print("Entendido! Pulando incrição em evento.")
+            return
+        
+        indice_evento = int(inscricao) - 1
+        if 0 <= indice_evento < len(eventos_sugeridos):
+            evento_para_inscrever = eventos_sugeridos[indice_evento]
+            # Adiciona o ID do participante na lista de inscritos do evento
+            evento_para_inscrever['inscritos'].append(novo_id)
+            print(f"[SUCESO] Inscrição realizada no evento: {evento_para_inscrever['nome']}!")
+        else:
+            print("[AVISO] Escolha de evento inválida. Inscrição não realizada.")
+    except ValueError:
+        print("[AVISO] Entrada inválida. inscrição não realizada.")
 
 
 # - Geração de ID's únicos de 1 à ... 

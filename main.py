@@ -10,8 +10,6 @@ lista_participantes = []
 lista_eventos = []
 
 def carrgar_dados():
-    global lista_participantes, lista_eventos
-    # copy() está sendo usado para evitar mudanças inesperadas na lista original.
     lista_participantes.extend(PARTICIPANTES_DADOS)
     lista_eventos.extend(EVENTOS_DADOS)
     print(">>> Dados carregados com sucesso!")
@@ -22,7 +20,7 @@ if __name__ == "__main__":
 
     opcoes_menu = {
         "1": lambda: eventos.listar_todos_eventos(lista_eventos),
-        "2": lambda: participante.cadastro_participante(lista_participantes),
+        "2": lambda: participante.cadastro_participante(lista_participantes, lista_eventos),
         "3": lambda: participante.listar_todos_participantes(lista_participantes),
         "4": lambda: eventos.listar_participante_evento_especifico(lista_eventos, lista_participantes),
         "0": lambda: menu.sair_do_sistema(),

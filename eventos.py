@@ -9,7 +9,7 @@ def listar_todos_eventos(lista_e):# Exibe no terminal a lista de todos eventos c
     if not lista_e:
         print("Nenhum evento cadastrado no sistema")
         return
-    for e in lista_e:# Acesso dos valores do dicionário evento por suas chaves
+    for e in lista_e: # Acesso dos valores do dicionário evento por suas chaves
         nome = e["nome"]
         data = e["data"]
         tema = e["tema"]
@@ -66,3 +66,16 @@ def listar_participante_evento_especifico(eventos, participantes):
     for p in participantes_encontrados:
         print(f"{p['id']:<5} | {p['nome']:<25} | {p['email']}")
     print("-" * 50)
+
+def obter_temas_unicos(eventos):
+    '''
+    A lógica é procurar na lista de eventos e retornar uma lista de temas únicos
+    '''
+    if not eventos:
+        return []
+
+    temas_brutos = {e.get('tema') for e in eventos}
+    temas_unicos = {tema for tema in temas_brutos if tema is not None}
+
+    temas = sorted(list(temas_unicos))
+    return temas
