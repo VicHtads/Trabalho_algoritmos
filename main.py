@@ -23,6 +23,7 @@ if __name__ == "__main__":
         "2": lambda: participante.cadastro_participante(lista_participantes, lista_eventos),
         "3": lambda: participante.listar_todos_participantes(lista_participantes),
         "4": lambda: eventos.listar_participante_evento_especifico(lista_eventos, lista_participantes),
+        "5": lambda: participante.buscar_participante_por_id(lista_participantes),
         "0": lambda: menu.sair_do_sistema(),
     }
 

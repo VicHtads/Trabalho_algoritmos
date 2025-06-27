@@ -100,9 +100,9 @@ def gerar_novo_id_participante(lista_p):
 
 
 def listar_todos_participantes(lista_p):
-    """
+    '''
     Exibe no terminal a lista de todos os participantes cadastrados.
-    """
+    '''
     exibir_cabecalho("Lista de Participantes Cadastrados")
 
     if not lista_p:
@@ -119,6 +119,30 @@ def listar_todos_participantes(lista_p):
         email = p['email']
 
         # Uso da formatação em f-string para alinhar os dados em colunas
-        # :<5 significa "Alinhar à esquerda com 5 caracteres de espaço"
+        # :<5 significa "Alinhar à esquerda com 5 caracteres de espaço"***** Lembrar *****
         print(f"{uid:<5} | {nome:<25} | {email}")
     print("-" * 50)
+
+def buscar_participante_por_id(lista_p):
+    '''
+    Solicita o ID de um participante e exibe seus detalhes caso seja encontrado. Solicitar -> Validar -> Buscar -> Exibir
+    '''
+    exibir_cabecalho("Buscar Participante por ID")
+
+    try:
+        id_buscado = int(input("Digite o ID do participante a ser buscado: "))
+    except ValueError:
+        print("\n[ERRO] ID inválido. Por favor, digite apenas números.")
+        return
+
+    for p in lista_p:
+        if p['id'] == id_buscado:
+            print("\n[SUCESSO] Participante encontrado.")
+            print("-" * 30)
+            print(f"ID: {p['id']}")
+            print(f"Nome: {p['nome']}")
+            print(f"E-mail: {p['email']}")
+            print(f"Preferências: {', '.join(p['preferencias_tematicas']) if p['preferencias_tematicas'] else 'Nenhuma'}")
+            print("-" * 30)
+            return # Caso o participante seja encontrado e seus dados exibidos, encerra a função
+    print(f"\n[AVISO] Nenhum participante encontrado com o ID {id_buscado}.")

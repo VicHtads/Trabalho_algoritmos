@@ -8,6 +8,7 @@ def exibir_menu():
     print("2. Cadastrar novo participante")
     print("3. Listar todos os participantes")
     print("4. Listar participantes de evento especifico")
+    print("5. Buscar participante por ID")
     # Futuras opções aqui
     print("0. Sair")
     print("--------------------------------------------------")
