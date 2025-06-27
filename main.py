@@ -1,17 +1,19 @@
 # Arquivo: main.py
 # Este arquivo será o motor do sistem. Onde todo o sistema será executado
 
-from dados import PARTICIPANTES_DADOS, EVENTOS_DADOS
+from dados import PARTICIPANTES_DADOS, EVENTOS_DADOS, PALESTRANTE_DADOS
 import participante
 import menu
 import eventos
 
+lista_palestrantes = []
 lista_participantes = []
 lista_eventos = []
 
 def carrgar_dados():
     lista_participantes.extend(PARTICIPANTES_DADOS)
     lista_eventos.extend(EVENTOS_DADOS)
+    lista_palestrantes.extend(PALESTRANTE_DADOS)
     print(">>> Dados carregados com sucesso!")
 
 # --- Ponto de Entrada do Sistema ---

@@ -10,10 +10,16 @@ PARTICIPANTES_DADOS = [
 ]
 
 EVENTOS_DADOS = [
-    {"nome": "Workshop de IA", "data": "2025-08-15", "tema": "Inteligência Artificial", "inscritos": [1, 2, 5]},
-    {"nome": "Segurança em Foco", "data": "2025-09-02", "tema": "Segurança", "inscritos": [1, 3]},
-    {"nome": "Desenvolvimento Web Moderno", "data": "2025-09-20", "tema": "Web", "inscritos": [2, 4]},
-    {"nome": "Hackathon de Dados", "data": "2025-10-10", "tema": "Dados", "inscritos": [3, 5]},
-    {"nome": "Palestra sobre Carreira Tech", "data": "2025-11-05", "tema": "Carreira", "inscritos": [1, 2, 3, 4, 5]},
-    {"nome": "Minicurso de Git", "data": "2025-11-25", "tema": "Ferramentas", "inscritos": []} # Evento sem inscritos ainda | Utilizado para testes de novos registros
+    {"nome": "Workshop de IA", "data": "2025-08-15", "tema": "Inteligência Artificial", "inscritos": [1, 2, 5], "palestrantes": []},
+    {"nome": "Segurança em Foco", "data": "2025-09-02", "tema": "Segurança", "inscritos": [1, 3], "palestrantes": ['P002']},
+    {"nome": "Desenvolvimento Web Moderno", "data": "2025-09-20", "tema": "Web", "inscritos": [2, 4], "palestrantes": ['P003']},
+    {"nome": "Hackathon de Dados", "data": "2025-10-10", "tema": "Dados", "inscritos": [3, 5], "palestrantes": ['P001']},
+    {"nome": "Palestra sobre Carreira Tech", "data": "2025-11-05", "tema": "Carreira", "inscritos": [1, 2, 3, 4, 5], "palestrantes": ['P001', 'P003']},
+    {"nome": "Minicurso de Git", "data": "2025-11-25", "tema": "Ferramentas", "inscritos": [], "palestrantes": []} # Evento sem inscritos ainda | Utilizado para testes de novos registros
+]
+
+PALESTRANTE_DADOS =[
+    {"id": 'P001', "nome": "Dra. Eliana Dacota2", "bio": "Especialista em Big Data e Machine Learning.", "area_expertise": "Dados"},
+    {"id": 'P002', "nome": "Prof. Alan Turing Jr.", "bio": "Pesquisador em Segurança Cibernética e Criptografia.", "area_expertise": "Segurança"},
+    {"id": 'P003', "nome": "Mariana Webber", "bio": "Desenvolvedora Full-Stack e entusiasta de novas tecnologias web.", "area_expertise": "Web"}
 ]
