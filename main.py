@@ -5,6 +5,8 @@ from dados import PARTICIPANTES_DADOS, EVENTOS_DADOS, PALESTRANTE_DADOS
 import participante
 import menu
 import eventos
+import relatorios
+import palestrantes
 
 lista_palestrantes = []
 lista_participantes = []
@@ -26,6 +28,8 @@ if __name__ == "__main__":
         "3": lambda: participante.listar_todos_participantes(lista_participantes),
         "4": lambda: eventos.listar_participante_evento_especifico(lista_eventos, lista_participantes),
         "5": lambda: participante.buscar_participante_por_id(lista_participantes),
+        "6": lambda: relatorios.relatorio_temas_populares(lista_eventos),
+        "7": lambda: palestrantes.adicionar_novo_palestrante(lista_palestrantes),
         "0": lambda: menu.sair_do_sistema(),
     }
 

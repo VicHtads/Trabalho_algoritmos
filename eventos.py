@@ -1,5 +1,5 @@
 # Arquivo: eventos.py
-# Este arquivo será o contâiner para todas as funcionalidades envolvendo 'eventos'
+# Este arquivo será o contâiner para todas as funcionalidades envolvendo 'eventos'.
 from utils import exibir_cabecalho
 
 def listar_todos_eventos(lista_e):# Exibe no terminal a lista de todos eventos cadastrados.
