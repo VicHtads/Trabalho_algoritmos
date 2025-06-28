@@ -30,6 +30,8 @@ if __name__ == "__main__":
         "5": lambda: participante.buscar_participante_por_id(lista_participantes),
         "6": lambda: relatorios.relatorio_temas_populares(lista_eventos),
         "7": lambda: palestrantes.adicionar_novo_palestrante(lista_palestrantes),
+        "8": lambda: palestrantes.listar_todos_palestrantes(lista_palestrantes),
+        "9": lambda: palestrantes.ver_detalhes_palestrante(lista_palestrantes, lista_eventos),
         "0": lambda: menu.sair_do_sistema(),
     }
 

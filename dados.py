@@ -19,7 +19,7 @@ EVENTOS_DADOS = [
 ]
 
 PALESTRANTE_DADOS =[
-    {"id": 'P001', "nome": "Dra. Eliana Dacota2", "bio": "Especialista em Big Data e Machine Learning.", "area_expertise": "Dados"},
+    {"id": 'P001', "nome": "Dra. Eliana Dacota", "bio": "Especialista em Big Data e Machine Learning.", "area_expertise": "Dados"},
     {"id": 'P002', "nome": "Prof. Alan Turing Jr.", "bio": "Pesquisador em Segurança Cibernética e Criptografia.", "area_expertise": "Segurança"},
     {"id": 'P003', "nome": "Mariana Webber", "bio": "Desenvolvedora Full-Stack e entusiasta de novas tecnologias web.", "area_expertise": "Web"}
 ]

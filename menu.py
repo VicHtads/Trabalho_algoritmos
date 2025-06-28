@@ -9,8 +9,10 @@ def exibir_menu():
     print("3. Listar todos os participantes")
     print("4. Listar participantes de evento especifico")
     print("5. Buscar participante por ID")
-    print("6. Gerar relatóriso de temas populares")
+    print("6. Gerar relatório de temas populares")
     print("7. Adicionar novo palestrante")
+    print("8. Listar todos os palestrantes")
+    print("9. Ver detalhes de um participante")
     # Futuras opções aqui
     print("0. Sair")
     print("--------------------------------------------------")
