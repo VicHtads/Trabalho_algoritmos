@@ -146,3 +146,115 @@ def buscar_participante_por_id(lista_p):
             print("-" * 30)
             return # Caso o participante seja encontrado e seus dados exibidos, encerra a função
     print(f"\n[AVISO] Nenhum participante encontrado com o ID {id_buscado}.")
+
+
+def remover_participante(lista_p, lista_e):
+    """
+    Remove um participante da lista principal e também de todas as listas de inscrição de eventos.
+    """
+    exibir_cabecalho("Remover Participante")
+
+    if not lista_p:
+        print("Nenhum participante para remover.")
+        return
+
+    for i, p in enumerate(lista_p):
+        print(f"{i + 1}. {p['nome']} (ID: {p['id']})")
+
+    try:
+        escolha = int(input("\nDigite o número do particpante que deseja remover: "))
+        indice = escolha - 1
+
+        if not (0 <= indice < len(lista_p)):
+            print("[ERRO] Número de participante inválido.")
+            return
+
+        particpante_a_remover = lista_p[indice]
+
+    except ValueError:
+        print("[ERRO] Entrada inválida. Por favor, digite um número.")
+
+    # Confirmação de segurança
+    # .upper() converte a resposta para maiúscula, aceitando 's' ou 'S'
+    confirmacao = input(f"Tem certeza que deseja remover '{particpante_a_remover['nome']}'? Esta ação não poderá ser desfeita. [S/N]: ").strip().upper()
+
+    if confirmacao != 'S':
+        print("Operação cancelada.")
+        return
+
+    # Executa a remoção
+    id_a_remover = particpante_a_remover['id']
+
+    # Remove o ID das listas de inscritos dos eventos
+    for evento in lista_e:
+        if id_a_remover in evento['inscritos']:
+            evento['inscritos'].remove(id_a_remover)
+    
+    # Remove o participante da lista principal
+    lista_p.remove(particpante_a_remover)
+    print(f"\n[SUCESSO] Participante '{particpante_a_remover['nome']}' removido do sistema.")
+
+
+def atualizar_participante(lista_p):
+    """
+    Permite atualização dos dados de um participante escolhido pelo usuário.
+    """
+    exibir_cabecalho("Atualizar Dadods de Participante")
+
+    if not lista_p:
+        print("Nenhum participante para atualizar.")
+        return
+    
+    # Lista e seleciona o participante
+    for i, p in enumerate(lista_p):
+        print(f"{i + 1}. {p['nome']}")
+    
+    try:
+        escolha = int(input("\nDigite o número do particpante que deseja atualizar: "))
+        indice = escolha - 1
+
+        if not (0 <= indice < len(lista_p)):
+            print("[ERRO] Número de participante inválido.")
+            return
+
+        particpante_a_atualizar = lista_p[indice]
+
+    except ValueError:
+        print("[ERRO] Entrada inválida. Por favor, digite um número.")
+
+    while True:
+        exibir_cabecalho(f"Editando: {particpante_a_atualizar['nome']}")
+        print(f"1. Nome: {particpante_a_atualizar['nome']}")
+        print(f"2. email: {particpante_a_atualizar['email']}")
+        print(f"0. Voltar ao menu principal")
+
+        campo_escolhido = input("\nQual campo deseja atualizar? ").strip()
+
+        if campo_escolhido == '1':
+            # Lógica para alterar o nome
+            while True:
+                novo_nome = input("Digite o novo nome: ").strip()
+                if len(novo_nome) > 2:
+                    particpante_a_atualizar['nome'] = novo_nome
+                    print("[SUCESSO] Nome atualizado.")
+                    break
+                else:
+                    print("[ERRO] Nome inválido.")
+
+        elif campo_escolhido == '2':
+            # Lógica para alterar o e-mail
+            while True:
+                novo_email = input("Digite o novo e-mail: ").strip()
+                if "@" in novo_email and "." in novo_email.split('@')[1]:
+                    particpante_a_atualizar['email'] = novo_email
+                    print("[SUCESSO] E-mail atualizado.")
+                    break
+                else:
+                    print("[ERRO] Formato de e-mail inválido.")
+
+        elif campo_escolhido == '0':
+            print("Retornando ao menu principal...")
+            break
+
+        else:
+            print("[ERRO] Opção de campo inválida.")

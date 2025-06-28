@@ -12,7 +12,9 @@ def exibir_menu():
     print("6. Gerar relatório de temas populares")
     print("7. Adicionar novo palestrante")
     print("8. Listar todos os palestrantes")
-    print("9. Ver detalhes de um participante")
+    print("9. Ver detalhes de um palestrante")
+    print("10. Remover participante")
+    print("11. Atualizar dados de participante")
     # Futuras opções aqui
     print("0. Sair")
     print("--------------------------------------------------")
