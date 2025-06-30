@@ -2,25 +2,56 @@
 # Este arquivo terá toda a 'interface' do sistema, com suas respectivas opções de mostragem.
 from utils import exibir_cabecalho
 
-def exibir_menu():
-    exibir_cabecalho("Sistema de Gerenciamento de Eventos Tech")
+def exibir_menu_principal():
+    exibir_cabecalho("Sistema de Gerenciamento de Eventos - Menu Principal")
+    print("1. Gerenciar Eventos")
+    print("2. Gerenciar Participantes")
+    print("3. Gerenciar Palestrantes")
+    print("4. Relatórios e Ferramentas")
+    print("\n0. Sair do Sistema")
+    print("-" * 60)
+
+
+def exibir_menu_eventos():
+    exibir_cabecalho("Gerenciar Eventos")
     print("1. Listar todos os eventos")
-    print("2. Cadastrar novo participante")
-    print("3. Listar todos os participantes")
-    print("4. Listar participantes de evento especifico")
+    print("2. Adicionar novo evento")
+    print("3. Atualizar evento")
+    print("4. Remover evento")
+    print("5. Buscar eventos por tema")
+    print("6. Listar participantes de um evento")
+    print("\n0. Voltar ao menu principal")
+    print("-" * 60)
+
+
+def exibir_menu_participante():
+    exibir_cabecalho("Gerenciar Participantes")
+    print("1. Listar todos os participantes")
+    print("2. Adicionar novo participante")
+    print("3. Atualizar dados de participante")
+    print("4. Remover participante")
     print("5. Buscar participante por ID")
-    print("6. Gerar relatório de temas populares")
-    print("7. Adicionar novo palestrante")
-    print("8. Listar todos os palestrantes")
-    print("9. Ver detalhes de um palestrante")
-    print("10. Remover participante")
-    print("11. Atualizar dados de participante")
-    print("12. Adicionar novo evento")
-    print("13. Remover evento")
-    print("14. Atualizar dados de eventos")
-    # Futuras opções aqui
-    print("0. Sair")
-    print("--------------------------------------------------")
+    print("\n0. Voltar ao menu principal")
+    print("-" * 60)
+
+
+def exibir_menu_palestrante():
+    exibir_cabecalho("Gerenciar Palestrantes")
+    print("1. Listar todos os palestrantes")
+    print("2. Adicionar novo palestrante")
+    print("3. Ver detalhes de um palestrante")
+    print("\n0. Voltar ao menu principal")
+    print("-" * 60)
+
+
+def exibir_menu_relatorios():
+    exibir_cabecalho("Relatórios e Ferramentas")
+    print("1. Relatório de temas mais populares")
+    print("2. Relatório de participantes mais ativos")
+    print("3. Alerta de eventos com baixa adesão")
+    print("\n0. Voltar ao menu principal")
+    print("-" * 60)
+
 
 def sair_do_sistema():
     print("Saindo do sistema. Até logo!")

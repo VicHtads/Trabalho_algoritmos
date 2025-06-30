@@ -35,7 +35,7 @@ def adicionar_novo_palestrante(lista_palestrantes):
     area = input(f"Digite a área de expertise de {nome}: ").strip()
 
     if not nome or not bio or not area:
-        print("\n[ERRO] Todos os ccampos (nome, bio, área) são obrigatórios. O cancelada.")
+        print("\n[ERRO] Todos os campos (nome, bio, área) são obrigatórios. Operação cancelada.")
         return
 
     # Gerar o novo ID customizado
@@ -49,7 +49,7 @@ def adicionar_novo_palestrante(lista_palestrantes):
     }
 
     lista_palestrantes.append(novo_palestrante)
-    print(f"\n[SUCESSO] Palestrante '{nome}' cadastrado com sucesso co ID: {novo_id}!")
+    print(f"\n[SUCESSO] Palestrante '{nome}' cadastrado com sucesso com ID: {novo_id}!")
 
 
 def listar_todos_palestrantes(lista_p):
@@ -65,7 +65,7 @@ def listar_todos_palestrantes(lista_p):
     print(f"{'ID':<10} | {'Nome':<25} | {'Área de Expertise'}")
     print("-" * 60)
 
-    # Iteração sobre a lista para exibir os dados achados de cada palestrante
+    # Itera sobre a lista para exibir os dados achados de cada palestrante
     for palestrante in lista_p:
         pid = palestrante.get('id', 'N/A')
         nome = palestrante.get('nome', 'N/A')

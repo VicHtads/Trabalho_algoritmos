@@ -9,12 +9,12 @@ def cadastro_participante(lista_p, lista_e):
     '''
     exibir_cabecalho("Cadastrar Novo Participante")
 
-# --- Bloco: Coleta de Dados Básicos ---
+# Coleta de dados básicos
     while True:
     #  Solicita dados ao usuário
     # Uso do .strip() para remover espaços extras que o usuário possa digitar
         nome = input("Digite o nome completo do participante: ").strip()
-        if len(nome) > 2: # Uma validação simples: o nome deve conter maus de 2 caracteres.
+        if len(nome) > 2: # Validação simples - o nome deve conter mais de 2 caracteres.
             break
         else:
             print("[ERRO] Nome inválido. por favor, digite um nome com mais de 2 caracteres")
@@ -27,7 +27,7 @@ def cadastro_participante(lista_p, lista_e):
         else:
             print("[ERRO] Formato de e-mail inválido. O e-mail deve conter '@' e um '.' após.")
 
-# --- Bloco: Coletar Preferências Temáticas ---
+# Coleta preferências temáticas
     print("\nSelecione seus temas de interesse:")
     temas_disponiveis = evt.obter_temas_unicos(lista_e)
     for i, tema in enumerate(temas_disponiveis):
@@ -43,7 +43,7 @@ def cadastro_participante(lista_p, lista_e):
     except (ValueError, IndexError):
         print("[AVISO] Seleção de temas inválidas. O participante será cadastrado sem preferências.")
 
-# --- Bloco: Criar e Salvar Participante ---
+# Criar e Salvar Participante
     novo_id = gerar_novo_id_participante(lista_p)
     novo_participante = {
         'id': novo_id,
@@ -54,7 +54,7 @@ def cadastro_participante(lista_p, lista_e):
     lista_p.append(novo_participante)
     print(f"\n[SUCESSO] Participante '{nome}' (ID: {novo_id}) cadastrado!")
 
-# --- Bloco: Sugerir e Inscrever em Evento ---
+# Sugere e Inscreve em Evento 
     if not preferencias_escolhidas:
         return # Se não foram especificadas preferências temáticas, encerra a função aqui.
     
@@ -86,14 +86,14 @@ def cadastro_participante(lista_p, lista_e):
         print("[AVISO] Entrada inválida. inscrição não realizada.")
 
 
-# - Geração de ID's únicos de 1 à ... 
+# Geração de ID's únicos de 1 à ... 
 def gerar_novo_id_participante(lista_p):
     '''
     Gera um ID único para um participante.
     A lógica é encontrar o maior ID existente e incrementar + 1
     '''
     if not lista_p:
-        # Se a lista está vazia, o primeiro ID será 1.
+        # Se a lista estiver vazia, o primeiro ID será 1.
         return 1
     else:
         return max(p['id'] for p in lista_p) + 1
@@ -119,7 +119,7 @@ def listar_todos_participantes(lista_p):
         email = p['email']
 
         # Uso da formatação em f-string para alinhar os dados em colunas
-        # :<5 significa "Alinhar à esquerda com 5 caracteres de espaço"***** Lembrar *****
+        # :<5 significa "Alinhar à esquerda com 5 caracteres de espaço"***** Lembrar de reutilizar *****
         print(f"{uid:<5} | {nome:<25} | {email}")
     print("-" * 50)
 
@@ -158,7 +158,7 @@ def remover_participante(lista_p, lista_e):
         print("Nenhum participante para remover.")
         return
 
-    for i, p in enumerate(lista_p):
+    for i, p in enumerate(lista_p): # Lista todos os participantes encontrados na lista_p(lista_participantes)
         print(f"{i + 1}. {p['nome']} (ID: {p['id']})")
 
     try:
@@ -234,7 +234,7 @@ def atualizar_participante(lista_p):
             # Lógica para alterar o nome
             while True:
                 novo_nome = input("Digite o novo nome: ").strip()
-                if len(novo_nome) > 2:
+                if len(novo_nome) > 2: # Validação que verifica se o nome em digitado tem ou não mais que 2 caractéres
                     particpante_a_atualizar['nome'] = novo_nome
                     print("[SUCESSO] Nome atualizado.")
                     break
@@ -245,7 +245,7 @@ def atualizar_participante(lista_p):
             # Lógica para alterar o e-mail
             while True:
                 novo_email = input("Digite o novo e-mail: ").strip()
-                if "@" in novo_email and "." in novo_email.split('@')[1]:
+                if "@" in novo_email and "." in novo_email.split('@')[1]:# Mesma lógica usada no cadastro de participante
                     particpante_a_atualizar['email'] = novo_email
                     print("[SUCESSO] E-mail atualizado.")
                     break

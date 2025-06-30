@@ -3,8 +3,10 @@
 import datetime
 from utils import exibir_cabecalho
 
-def listar_todos_eventos(lista_e):# Exibe no terminal a lista de todos eventos cadastrados.
-
+def listar_todos_eventos(lista_e):
+    """
+    Exibe no terminal a lista de todos eventos cadastrados.
+    """
     exibir_cabecalho("Lista de Eventos Cadastrados")
 
     if not lista_e:
@@ -37,7 +39,6 @@ def listar_participante_evento_especifico(eventos, participantes):
     
     try:
         escolha = int(input("\nDigite o número do evento que deseja consultar: "))
-        # Converte a escolha para um índice de lista (ex: 1 -> 0, 2 -> 1)
         indice_evento = escolha - 1
 
         # Converte a escolha para um índice de lista (ex: 1 -> 0, 2 -> 1)
@@ -50,7 +51,7 @@ def listar_participante_evento_especifico(eventos, participantes):
     except ValueError:
         print("[ERRO] Entrada inválida. Por favor digite um número.")
         return
-    # Encontrar os IDs dos inscritos no evento escolhido
+    # Encontra os IDs dos inscritos no evento escolhido
     print(f"\n--- Participantes Inscritos em: {evento_escolhido['nome']} ---")
     ids_dos_inscritos = evento_escolhido['inscritos']
 
@@ -58,10 +59,10 @@ def listar_participante_evento_especifico(eventos, participantes):
         print("Este evento não possui participantes inscritos.")
         return
     
-    # Buscar os detalhes dos participantes correspondentes
+    # Busca os detalhes dos participantes correspondentes
     participantes_encontrados = [p for p in participantes if p['id'] in ids_dos_inscritos]
     
-    # Exibir os detalhes
+    # Exibe os detalhes
     print(f"{'ID':<5} | {'Nome':<25} | {'E-mail'}")
     print("-" * 50)
     for p in participantes_encontrados:
@@ -103,7 +104,7 @@ def adicionar_novo_evento(lista_e, lista_p_speakers):
     while True:
         data_str = input("Digite a data do evento (formato AAAA-MM-DD):").strip()
         try:
-            # Tenta converter a str para um objeto de data. se der certo, o formato é válido.
+            # Tenta converter a str para um objeto de data(estrutura de dados que representa uma data específica). Se der certo, o formato é válido.
             datetime.datetime.strptime(data_str, '%Y-%m-%d')
             break
         except ValueError:
@@ -251,6 +252,7 @@ def atualizar_evento(lista_e, lista_p_speakers):
                 print("\nSelecione os novos palestrantes:")
                 for i, p in enumerate(lista_p_speakers):
                     print(f"{i + 1}. {p['nome']}")
+
                 try:
                     escolhas = input("Digite os números (separados por vírgula): ").split(',')
                     for esc in escolhas:
@@ -262,6 +264,7 @@ def atualizar_evento(lista_e, lista_p_speakers):
                     print("[SUCESSO] Lista de palestrantes atualizada!")
                 except (ValueError, IndexError):
                     print("[AVISO] Seleção inválida. Palestrantes não foram alterados.")
+
             else:
                 print("Nenhum palestrante cadastrado para selecionar.")
 
@@ -270,3 +273,52 @@ def atualizar_evento(lista_e, lista_p_speakers):
             break
         else:
             print("[ERRO] Opção de campo inválida.")
+
+
+def buscar_eventos_por_tema(lista_e):
+    """
+    Permite ao usuáriio escolher um tema e lista todos eventos correspondentes
+    àquele tema.
+    """
+    exibir_cabecalho("Buscar Eventos por Tema")
+
+    # Reutiliza função para obter e listar os temas
+    temas_disponiveis =obter_temas_unicos(lista_e)
+    if not temas_disponiveis:
+        print("Não há temas disponíveis para busca.")
+        return
+    
+    print("Selecione um tema para ver os eventos associados:")
+    for i, tema in enumerate(temas_disponiveis):
+        print(f"{i + 1}. {tema}")
+
+    # Obtém e valida a escolha do usuário
+    try:
+        escolha = int(input("\nDigite o número do tema: "))
+        indice = escolha - 1
+        if not (0 <= indice < len(temas_disponiveis)):
+            print("[ERRO] Número de tema inválido.")
+            return
+        tema_escolhido = temas_disponiveis[indice]
+    except ValueError:
+        print("[ERRO] Entrada inválida. Por favor digite um número.")
+        return
+    
+    # Filtra os eventos
+    eventos_encontrados = [e for e in lista_e if e.get('tema') == tema_escolhido]
+
+    # Exibi os resultados
+    exibir_cabecalho(f"Eventos sobre o Tema: {tema_escolhido}")
+
+    if not eventos_encontrados:
+        print("Nenhum evento encontrado para este tema.")
+    else:
+        # Reutilizando a mesma formatação da função de listar todos
+        for evento in eventos_encontrados:
+            nome = evento['nome']
+            data = evento['data']
+            num_inscritos = len(evento['inscritos'])
+            
+            print(f"- {nome}")
+            print(f"  Data: {data} | Inscritos: {num_inscritos}")
+            print("-" * 20)
