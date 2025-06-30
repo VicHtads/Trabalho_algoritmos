@@ -34,6 +34,9 @@ if __name__ == "__main__":
         "9": lambda: palestrantes.ver_detalhes_palestrante(lista_palestrantes, lista_eventos),
         "10": lambda: participante.remover_participante(lista_participantes,lista_eventos),
         "11": lambda: participante.atualizar_participante(lista_participantes),
+        "12": lambda: eventos.adicionar_novo_evento(lista_eventos, lista_palestrantes),
+        "13": lambda: eventos.remover_evento(lista_eventos),
+        "14": lambda: eventos.atualizar_evento(lista_eventos, lista_palestrantes),
         "0": lambda: menu.sair_do_sistema(),
     }
 

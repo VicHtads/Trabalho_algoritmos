@@ -15,6 +15,9 @@ def exibir_menu():
     print("9. Ver detalhes de um palestrante")
     print("10. Remover participante")
     print("11. Atualizar dados de participante")
+    print("12. Adicionar novo evento")
+    print("13. Remover evento")
+    print("14. Atualizar dados de eventos")
     # Futuras opções aqui
     print("0. Sair")
     print("--------------------------------------------------")
